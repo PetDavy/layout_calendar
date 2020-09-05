@@ -1,7 +1,7 @@
 .calendar {
   @each $day, $step-right in $week-days {
     &-#{$day} :first-child {
-      margin-left: $gap + ($size + 2 * $gap)  * $step-right;
+      margin-left: ($size + $gap) * $step-right;
     }
   }
 }

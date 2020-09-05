@@ -1,37 +1,32 @@
 .calendar {
   display: flex;
-  max-width: ($size + 2 * $gap) * 7;
-
   flex-wrap: wrap;
-  margin: 50px auto;
 
-  @for $i from 1 through 31 {
-    & :nth-child(#{$i}) {
-      position: relative;
-
-      width: $size;
-      height: $size;
-
-      margin: $gap;
-      border: 1px solid #000;
-
-      background-color: #eee;
-
-      &::after {
-        content: "#{$i}";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
+  counter-reset: date;
 
   & :nth-child(n) {
+    position: relative;
 
-    cursor: pointer;
+    width: $size;
+    height: $size;
+
+    margin: 0 $gap $gap 0;
+    border: 1px solid #000;
+    background-color: $cell-color;
+
     transition: transform 500ms, background-color 500ms;
+    cursor: pointer;
+
+    &::after {
+      counter-increment: date;
+      content: counter(date);
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+    }
 
     &:hover {
       transform: translateY(-20px);
